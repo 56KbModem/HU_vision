@@ -20,3 +20,6 @@ ExternalDLL/Debug/
 *.opensdf
 ExternalDLL/ExternalDLL/Release/
 ExternalDLL/Release/
+
+// file for copying the dll to the right directory
+copy_dll.sh
