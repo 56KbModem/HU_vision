@@ -11,8 +11,7 @@ Image::Image():
 }
 
 Image::Image(const int width, const int height):
-	width(width), height(height){
-}
+	width(width), height(height){}
 
 Image::~Image(){
 }
