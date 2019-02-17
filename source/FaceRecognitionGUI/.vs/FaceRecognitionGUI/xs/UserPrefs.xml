@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{56D4B828-CEE0-43E4-BACE-0D96D75BB2B2}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FaceRecognitionGUI/FaceRecognitionTask.cs">
+    <Files>
+      <File FileName="FaceRecognitionGUI/TestsetManagerForm.cs" Line="118" Column="1" />
+      <File FileName="FaceRecognitionGUI/FaceRecognitionTask.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.FaceRecognitionGUI PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

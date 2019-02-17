@@ -16,13 +16,6 @@ using System.Drawing.Imaging;
 
 namespace FaceRecognitionGUI {
     class VisionDLL {
-
-
-
-
-
-
-       
         [DllImport("ExternalDll.dll",
                 EntryPoint = "getDLLExecutionTask",
                 ExactSpelling = false,
