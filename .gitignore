@@ -3,6 +3,9 @@
 # ignore shell scripts
 *.sh
 
+# Nick: unable to add database files to git because of permissions
+# excluding them from being tracked here...
+source/Vision/.vs/Vision/v15/*
 
 # Created by https://www.gitignore.io/api/c,vim,c++,linux,nanoc,windows,kdevelop4,libreoffice,visualstudio,microsoftoffice
 # Edit at https://www.gitignore.io/?templates=c,vim,c++,linux,nanoc,windows,kdevelop4,libreoffice,visualstudio,microsoftoffice
@@ -518,6 +521,3 @@ ASALocalRun/
 healthchecksdb
 
 # End of https://www.gitignore.io/api/c,vim,c++,linux,nanoc,windows,kdevelop4,libreoffice,visualstudio,microsoftoffice
- 
-Solution.VC.db*
-Browse.VC.*

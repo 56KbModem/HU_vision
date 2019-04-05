@@ -27,7 +27,8 @@ void IntensityImageStudent::set(const IntensityImageStudent &other) {
 }
 
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
-	int throwError = 0, e = 1 / throwError;
+	//int throwError = 0, e = 1 / throwError;
+	this->_intensityMap.at(x).at(y) = pixel;
 	//TODO: no comment needed :)
 }
 
