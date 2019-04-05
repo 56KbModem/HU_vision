@@ -519,3 +519,5 @@ healthchecksdb
 
 # End of https://www.gitignore.io/api/c,vim,c++,linux,nanoc,windows,kdevelop4,libreoffice,visualstudio,microsoftoffice
  
+Solution.VC.db*
+Browse.VC.*
