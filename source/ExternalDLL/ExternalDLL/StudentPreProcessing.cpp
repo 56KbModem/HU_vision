@@ -1,23 +1,46 @@
 #include <iostream>
+#include<unordered_map>
 #include "StudentPreProcessing.h"
 #include "IntensityImageStudent.h"
+#include <cstdint>
+#include <array>
+#include<unordered_map>
 
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
 	std::cout << "converting RGB to Intensity image...\n";
-	RGB current_pixel;
 	// allocate a new IntensityImage on the heap so we can return its pointer
-	IntensityImageStudent *intensity_image_ptr = new IntensityImageStudent(image.getHeight(), image.getWidth());
+	IntensityImageStudent *intensity_image_ptr = new IntensityImageStudent(image.getWidth(), image.getHeight());
+	
+	std::unordered_map<uint32_t, Intensity> lookup = std::unordered_map<uint32_t, Intensity>();
+	unsigned int totalCounter = 0;
+	unsigned int mismatchCounter = 0;
+	// Calculating black and white is useless
+	lookup[0x000000] = 0;
+	lookup[0xFFFFFF] = 255;
 
-	for (int i = 0; i < intensity_image_ptr->getHeight(); ++i) {
-		for (int j = 0; j < intensity_image_ptr->getWidth(); ++j) {
-			current_pixel = image.getPixel(i, j);
-			// converting the R, G and B channels to grayscale with the weighted method
-			intensity_image_ptr->setPixel(i, j, ((current_pixel.r * 0.30)
-												+ (current_pixel.g * 0.59)
-												+ (current_pixel.b * 0.77)) / 3);
+	for (int x = 0; x < intensity_image_ptr->getWidth(); ++x) {
+		for (int y = 0; y < intensity_image_ptr->getHeight(); ++y) {
+			totalCounter++;
+			RGB current_pixel = image.getPixel(x, y);
+			uint32_t lookup_key = current_pixel.r | current_pixel.g << 8 | current_pixel.b << 16;
+			auto value = lookup.find(lookup_key);
+			Intensity pixelValue;
+			if (value == lookup.end()) {
+				mismatchCounter++;
+				pixelValue = ((current_pixel.r * 0.30)
+					+ (current_pixel.g * 0.59)
+					+ (current_pixel.b * 0.77)) / 3;
+				lookup[lookup_key] = pixelValue;
+			}
+			else {
+				pixelValue = value->second;
+			}
+			intensity_image_ptr->setPixel(x, y, pixelValue);
+			// converting the R, G and B channels to grayscale with the weighted
 		}
 	}
+	std::cout << "Total loops " << totalCounter << " - Mis: " << mismatchCounter << std::endl;
 	return intensity_image_ptr;
 }
 

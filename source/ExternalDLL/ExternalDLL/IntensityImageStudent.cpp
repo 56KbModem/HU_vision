@@ -5,14 +5,9 @@ IntensityImageStudent::IntensityImageStudent() : IntensityImage() { }
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other) : IntensityImage(other.getWidth(), other.getHeight()) {
 }
 
-IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
-	this->_intensityMap.reserve(height);
-	for (int y = 0; y < height; y++) {
-		this->_intensityMap.push_back(std::vector<Intensity>(width));
-
-	}
-
-}
+IntensityImageStudent::IntensityImageStudent(const int width, const int height) : 
+	IntensityImage(width, height), 
+	_intensityMap(width, std::vector<Intensity>(height)) { }
 
 IntensityImageStudent::~IntensityImageStudent() { }
 
@@ -58,9 +53,7 @@ void IntensityImageStudent::setPixel(int i, Intensity pixel) {
 }
 
 Intensity IntensityImageStudent::getPixel(int x, int y) const {
-	int throwError = 0, e = 1 / throwError;
-	//TODO: no comment needed :)
-	return 0;
+	return this->_intensityMap.at(x).at(y);
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {
