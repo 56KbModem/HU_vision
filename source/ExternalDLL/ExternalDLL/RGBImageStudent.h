@@ -10,12 +10,7 @@
 #include <cstddef>
 class RGBImageStudent : public RGBImage {
 private:
-
 	std::vector<std::vector<RGB>> _bitmap;
-	
-
-	
-
 public:
 	RGBImageStudent();
 	RGBImageStudent(const RGBImageStudent &other);
@@ -32,6 +27,4 @@ public:
 
 	RGB getPixel(int x, int y) const;
 	RGB getPixel(int i) const;
-
-
 };

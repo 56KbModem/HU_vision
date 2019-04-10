@@ -160,17 +160,8 @@ namespace FaceRecognitionGUI {
             }
             throw new FaceRecognitionTask.FaceRecognitionException("Localization step 5: failed!");
         }
-
-
-
-
-
-
-
-
-
-
         public void executePreProcessingStep1(bool student){
+
             if (VisionDLL.executePreProcessingStep1(task, student)) {
                 IntPtr image = VisionDLL.getResultPreProcessingStep1(task);
                 preProcessing1 = VisionDLL.getBitmapFromRGBImage(image);

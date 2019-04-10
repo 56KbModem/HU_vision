@@ -12,12 +12,27 @@ IntensityImageStudent::IntensityImageStudent(const int width, const int height) 
 IntensityImageStudent::~IntensityImageStudent() { }
 
 void IntensityImageStudent::set(const int width, const int height) {
+	IntensityImage::set(width, height);
+	this->_intensityMap.reserve(width);
+	for (size_t x = 0; x < width; x++) {
+		if (x < this->_intensityMap.size()) {
+			this->_intensityMap.at(x) = std::vector<Intensity>(height);
+		}
+		else {
+			this->_intensityMap.push_back(std::vector<Intensity>(height));
+		}
+	}
 
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
 	IntensityImage::set(other.getWidth(), other.getHeight());
-	int throwError = 0, e = 1 / throwError;
+	this->set(other.getWidth(), other.getHeight());
+	for (size_t x = 0; x < other.getWidth(); x++) {
+		for (size_t y = 0; y < other.getHeight(); y++) {
+			this->_intensityMap.at(x).at(y) = other._intensityMap.at(x).at(y);
+		}
+	}
 	//TODO: resize or create a new pixel storage and copy the object (Don't forget to delete the old storage)
 }
 
@@ -28,7 +43,7 @@ void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
 }
 
 void IntensityImageStudent::setPixel(int i, Intensity pixel) {
-	int throwError = 0, e = 1 / throwError;
+	// int throwError = 0, e = 1 / throwError;
 	/*
 	* TODO: set pixel i in "Row-Major Order"
 	*
@@ -50,6 +65,10 @@ void IntensityImageStudent::setPixel(int i, Intensity pixel) {
 	* 7		7
 	* 8		8
 	*/
+
+	auto x = i % this->getWidth();
+	auto y = i / this->getWidth();
+	this->_intensityMap.at(x).at(y) = pixel;
 }
 
 Intensity IntensityImageStudent::getPixel(int x, int y) const {
@@ -57,7 +76,9 @@ Intensity IntensityImageStudent::getPixel(int x, int y) const {
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {
-	int throwError = 0, e = 1 / throwError;
+	// int throwError = 0, e = 1 / throwError;
 	//TODO: see setPixel(int i, RGB pixel)
-	return 0;
+	auto x = i % this->getWidth();
+	auto y = i / this->getWidth();
+	return this->_intensityMap.at(x).at(y);//this->_bitmap.at(x).at(y);;
 }

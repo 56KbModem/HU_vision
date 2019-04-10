@@ -7,6 +7,13 @@
 #include<unordered_map>
 
 
+
+
+constexpr double r_weight = 1; // 0.30 * 2.55;
+constexpr double g_weight = 1; // 0.59 * 2.55;
+constexpr double b_weight = 1; // 0.11 * 2.55;
+
+
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
 	std::cout << "converting RGB to Intensity image...\n";
 	// allocate a new IntensityImage on the heap so we can return its pointer
@@ -18,7 +25,7 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 	// Calculating black and white is useless
 	lookup[0x000000] = 0;
 	lookup[0xFFFFFF] = 255;
-
+	
 	for (int x = 0; x < intensity_image_ptr->getWidth(); ++x) {
 		for (int y = 0; y < intensity_image_ptr->getHeight(); ++y) {
 			totalCounter++;
@@ -28,9 +35,9 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 			Intensity pixelValue;
 			if (value == lookup.end()) {
 				mismatchCounter++;
-				pixelValue = ((current_pixel.r * 0.30)
-					+ (current_pixel.g * 0.59)
-					+ (current_pixel.b * 0.77)) / 3;
+				pixelValue = ((current_pixel.r * r_weight)
+					+ (current_pixel.g * g_weight)
+					+ (current_pixel.b * b_weight)) / 3;
 				lookup[lookup_key] = pixelValue;
 			}
 			else {
