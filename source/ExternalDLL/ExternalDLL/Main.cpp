@@ -26,7 +26,7 @@ int main(int argc, char * argv[]) {
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\Users\\sebas\\Downloads\\Mark_Rutte_2015_(1).jpg", *input)) {
+	if (!ImageIO::loadImage("C:/Users/nick/Downloads/rgb.jpg", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;

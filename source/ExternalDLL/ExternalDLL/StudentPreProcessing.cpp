@@ -9,9 +9,9 @@
 
 
 
-constexpr double r_weight = 1; // 0.30 * 2.55;
-constexpr double g_weight = 1; // 0.59 * 2.55;
-constexpr double b_weight = 1; // 0.11 * 2.55;
+constexpr double r_weight = 0.30 * 2.55;
+constexpr double g_weight = 0.59 * 2.55;
+constexpr double b_weight = 0.11 * 2.55;
 
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
@@ -44,10 +44,11 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 				pixelValue = value->second;
 			}
 			intensity_image_ptr->setPixel(x, y, pixelValue);
-			// converting the R, G and B channels to grayscale with the weighted
+			// converting the R, G and B channels to grayscale with the weighted method
 		}
 	}
 	std::cout << "Total loops " << totalCounter << " - Mis: " << mismatchCounter << std::endl;
+	std::cout << "Saved by lookup: " << totalCounter - mismatchCounter << std::endl;
 	return intensity_image_ptr;
 }
 
